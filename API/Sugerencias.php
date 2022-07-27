@@ -36,8 +36,7 @@ if(isset($_POST["query"])){
             "state"=>404,
             "mensaje"=>"la ruta no se encontro"
            ]; 
-           git config --global user.email "you@example.com"
-           git config --global user.name "Your Name"
+
             echo json_encode($resp); 
            return;   
         break;
