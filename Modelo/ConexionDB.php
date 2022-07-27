@@ -3,9 +3,9 @@
 class ConexionDB extends mysqli{
     private $host="localhost";
     private $user="root";
-    private $password="";
-    private $DBuser="rutas";
-    private $port=9090;
+    private $password="root";
+    private $DBuser="ruta";
+    private $port=8080;
     private $conxionDB;
     private $status;
 

@@ -1,5 +1,5 @@
 <?php
-include(dirname(dirname(__FILE__)) . '/Controller/ControllerUser.php');
+include(dirname(dirname(__FILE__)) . '/Controller/ControllerSugerencias.php');
 
 $resp=[];
 
@@ -8,22 +8,17 @@ if(isset($_POST["query"])){
     $consulta=$_POST["query"];
 
     switch($consulta){
-        case 'login/user':
+        case 'sugerencia/mensaje':
             try{
-                $userController= new ControllerUser();
-                $user=$userController->getUser($_POST['email'],$_POST['clave']);
-                if($user){
-                    session_start();
-                    $_SESSION['user']=$user['id_tipo_user'];
-                    $_SESSION['dataUser']=$user;
-                    $resp["data"]=[
-                        "resp"=>"se creo seccion",
+                $userController= new ControllerSugerencias();
+                $addS=$userController->addSugerencia($_POST['nombre'],$_POST['apellido'],$_POST['correo'],$_POST['telefono'],$_POST['empresa'],date("Y-m-d H:i:s"),$_POST['mensaje']);
+                $resp["data"]=[
+                        "resp"=>"se creo",
                         "state"=>200,
-                        "mensaje"=>"Bienvenido"
+                        "mensaje"=>$resp
                        ]; 
-                    echo json_encode($resp); 
-                    return;  
-                } 
+                echo json_encode($resp); 
+                return;  
             }catch(Exception $e){
                 $resp["data"]=[
                  "resp"=>"Error",
@@ -41,6 +36,8 @@ if(isset($_POST["query"])){
             "state"=>404,
             "mensaje"=>"la ruta no se encontro"
            ]; 
+           git config --global user.email "you@example.com"
+           git config --global user.name "Your Name"
             echo json_encode($resp); 
            return;   
         break;

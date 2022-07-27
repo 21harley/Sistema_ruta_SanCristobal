@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,12 @@
 </head>
 <body>
     <?php include(dirname(dirname(__FILE__)) . '/Components/Navegador/Nav.php');?>
+    <?php
+        if(isset($_SESSION['user'])){
+            $url="Location: ../../Views/Home/Home.php";
+            header($url);
+        }
+    ?>
     <main>
         <div class="logo">
             <figure>
@@ -16,8 +23,8 @@
         </div>
         <form method="post" class="form-login" >
         <h1>Login</h1>
-        <label class="form-login__label"  for="nombre">
-            <span>Nombre:</span><input type="text" name="nombre">
+        <label class="form-login__label"  for="email">
+            <span>Correo:</span><input type="email" name="email">
         </label>
         <label class="form-login__label" for="clave">
             <span>clave:</span><input type="password" name="clave">

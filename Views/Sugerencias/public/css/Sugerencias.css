@@ -1,0 +1,10 @@
+h1{
+    text-align: center;
+}
+.form-sugerencias{
+    display: grid;
+    max-width: 280px;
+    height: 100%;
+    margin: auto;
+    gap: 10px;
+}

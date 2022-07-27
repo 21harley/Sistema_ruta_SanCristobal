@@ -1,4 +1,4 @@
-import Confi from "./../../../../public/js/index.js";
+import Confi from "../../../../public/js/cofi.js";
 
 const $form=document.querySelector(".form-login");
 
@@ -7,9 +7,9 @@ $form.addEventListener("submit",(e)=>{
   let data=Object.fromEntries(new FormData(e.target));
   console.log(data);
   const body=new FormData();
-  body.append("nombre",data.nombre);
+  body.append("email",data.email);
   body.append("clave",data.clave);
-  body.append("consulta","1");
+  body.append("query","login/user");
   const options = {
     method: "POST",
     body
@@ -19,7 +19,12 @@ $form.addEventListener("submit",(e)=>{
   fetch(Confi.url+"/Users.php",options)
   .then(response => response.text())
   .then(data => {
+    console.log(data);
     const json = JSON.parse(data);
-    console.log(json);
+    console.log(typeof json);
+    if(json.data['state']==200){
+      window.location.reload();
+    }
+    //console.log(json);
   })
 })

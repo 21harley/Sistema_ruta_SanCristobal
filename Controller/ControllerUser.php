@@ -9,8 +9,18 @@ class ControllerUser{
         $this->user= new ModeloUser();
     }
     
-    public function getUser(){
-        $resp=$this->user->selectUser();
+    public function getUsers(){
+        $resp=$this->user->selectUsers();
+        $rows=[];
+        while($row = $resp->fetch_array())
+        {
+            $rows[] = $row;
+        }
+        return $rows;
+    }
+
+    public function getUser($correo,$clave){
+        $resp=$this->user->selectUsers($correo,$clave);
         return $resp;
     }
     
